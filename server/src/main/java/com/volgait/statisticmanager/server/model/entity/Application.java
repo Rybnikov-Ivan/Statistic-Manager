@@ -21,7 +21,7 @@ public class Application implements Serializable {
     @Getter
     @Setter
     @NotNull
-    @Column(name = "name")
+    @Column(name = "application_name")
     private String name;
 
     @Getter
