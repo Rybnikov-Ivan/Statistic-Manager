@@ -10,6 +10,7 @@ public interface UserService {
     ServiceResponse login(User requestUser);
     ServiceResponse logout();
     ServiceResponse register(RegistrationForm form);
+    boolean activateAccount(String token);
 
     static String generateServerBaseUrl(HttpServletRequest request) {
         int port = request.getServerPort();

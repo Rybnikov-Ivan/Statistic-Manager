@@ -1,6 +1,7 @@
 package com.volgait.statisticmanager.server.model.entity;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -15,6 +16,8 @@ public class VerificationToken {
 
     private String token;
 
+    @Getter
+    @Setter
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

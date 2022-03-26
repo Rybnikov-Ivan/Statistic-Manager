@@ -24,6 +24,7 @@ import org.springframework.transaction.UnexpectedRollbackException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -46,9 +47,6 @@ public class UserServiceImpl implements UserService {
     BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     SecurityService securityService;
-
-
-
 
     @Override
     public ServiceResponse login(User requestUser) {
@@ -102,13 +100,6 @@ public class UserServiceImpl implements UserService {
         }
         String securityToken = securityService.generateSecurityToken();
 
-        String baseUrl = UserService.generateServerBaseUrl(httpServletRequest);
-        String confirmLink = baseUrl + "/user/confirm/" + securityToken;
-
-        List<String> recipientsAddress = Arrays.asList(user.getEmail());
-        Map<String, Object> textVariables = new HashMap<>();
-        textVariables.put("confirmEmailLink", confirmLink);
-
         VerificationToken verificationToken = new VerificationToken(securityToken, user);
         try {
             userRepository.save(user);
@@ -121,5 +112,17 @@ public class UserServiceImpl implements UserService {
             response.setInternalServerErrorResponse();
         }
         return response;
+    }
+
+    @Override
+    public boolean activateAccount(String token) {
+        VerificationToken verificationToken = verificationTokenRepository.findByToken(token);
+        if (verificationToken == null) {
+            return false;
+        }
+        User account = verificationToken.getUser();
+        userRepository.save(account);
+        verificationTokenRepository.save(verificationToken);
+        return true;
     }
 }
