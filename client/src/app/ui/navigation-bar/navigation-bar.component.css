@@ -1,0 +1,50 @@
+.header {
+  background-size: cover;
+  height: 280px;
+}
+mat-toolbar{
+  background: rgba(0, 59, 39, 0.7);
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+mat-toolbar a {
+  text-decoration: none;
+  color: white;
+  margin-right: 30px;
+}
+mat-toolbar a:hover {
+  color: rgb(180, 180, 180);
+}
+mat-toolbar ul li div {
+  margin-right: 30px;
+}
+.navigation-items{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.logo {
+  font-size: 27px;
+}
+.active-link {
+  color: rgb(243, 197, 113) !important;
+  border-bottom: 2px #fff solid;
+}
+#user-name {
+  color: aqua;
+  padding-right: 10px;
+}
+#lang {
+  outline: none;
+  display: block;
+  border-radius: 5px;
+  padding: 0 5px;
+  font-weight: 700;
+  background-color: rgb(228, 240, 121);
+}
+@media(max-width: 959px){
+  mat-toolbar{
+    border-radius: 0px;
+  }
+}

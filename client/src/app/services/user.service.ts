@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { StorageService } from 'ngx-webstorage-service';
-import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RegistrationForm } from '../model/registration-form';
 import { User } from '../model/user';
@@ -45,4 +45,16 @@ export class UserService {
     const currentUser: User = this.storage.get(STORAGE_KEY) || null;
     return currentUser;
   }
+  logout():Observable<any> {
+    return this.http.get(this.endpoint + "/logout")
+    .pipe(
+      map(res => {
+        this.setLoggedUser(null!);
+        return res;
+      }),
+        catchError(error => {
+          return of(error);
+      }));
+}
+
 }

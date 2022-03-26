@@ -1,0 +1,53 @@
+<div class="header" fxFlex fxLayout>
+    <mat-toolbar>
+      <!-- Logo & navigation -->
+      <div fxFlex fxLayout>
+        <div class="navigation-item logo">
+          <a routerLink="/sights" routerLinkActive="active-link">{{ 'NAVIGATION.SIGHTS'}}</a>
+        </div>
+  
+        <ul fxLayout class="navigation-items" fxHide.lt-md>
+          <li><a routerLink="/posts" routerLinkActive="active-link">{{ 'NAVIGATION.POSTS'}}</a></li>
+          <li><a routerLink="/books" routerLinkActive="active-link">{{ 'NAVIGATION.BOOKS'}}</a></li>
+          <li><a routerLink="/multimedia" routerLinkActive="active-link">What to watch/listen</a></li>
+        </ul>
+        <button mat-button [matMenuTriggerFor]="menu" fxHide fxShow.lt-md>Menu</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/posts">{{ 'NAVIGATION.POSTS'}}</button>
+          <button mat-menu-item routerLink="/books">{{ 'NAVIGATION.BOOKS'}}</button>
+          <button mat-menu-item routerLink="/multimedia">What to watch/listen</button>
+        </mat-menu>
+  
+      </div>
+      <!-- User menu -->
+      <div fxFlex fxLayout fxLayoutAlign="end">
+        <ul fxLayout class="navigation-items" fxHide.lt-md>
+          <li>
+            <a *ngIf="!currentUser" routerLink="/login" routerLinkActive="active-link">Login</a>
+          </li>
+          <li>
+            <a *ngIf="!currentUser" routerLink="/registration" routerLinkActive="active-link">Registration</a>
+          </li>
+          <li>
+            <div id="user-name" *ngIf="currentUser">Welcome <i>{{currentUser.username}}</i></div>
+          </li>
+          <li>
+            <a *ngIf="currentUser" routerLink="/logout" routerLinkActive="active-link">Logout</a>
+          </li>
+        </ul>
+  
+        <button mat-button [matMenuTriggerFor]="userMenu" fxHide fxShow.lt-md>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item *ngIf="!currentUser" routerLink="/login" routerLinkActive="active-link">Login</button>
+          <button mat-menu-item *ngIf="!currentUser"
+                  routerLink="/registration" routerLinkActive="active-link">Registration</button>
+          <div *ngIf="currentUser">Welcome <i id="user-name">{{currentUser.username}}</i></div>
+          <button mat-menu-item
+                  *ngIf="currentUser" routerLink="/" routerLinkActive="active-link">Logout</button>
+        </mat-menu>
+
+      </div>
+    </mat-toolbar>
+  </div>
+  

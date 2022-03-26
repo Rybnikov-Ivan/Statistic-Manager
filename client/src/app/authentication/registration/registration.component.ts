@@ -31,9 +31,6 @@ export class RegistrationComponent implements OnInit {
         });
       
       }
-
-  
-
   ngOnInit() {}
 
   register():void {
