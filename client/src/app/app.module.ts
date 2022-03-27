@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -16,14 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faMugHot, faHeart, faTh, faThList, faSignInAlt, faUserPlus, faPlaneDeparture, faMapMarked, 
-  faSearch, faWindowClose, faPen,
-  faHiking, faCalendarAlt, faArchway, faComments,
-  faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave,
-  faUpload
-} from '@fortawesome/free-solid-svg-icons';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -36,16 +30,6 @@ import { AuthenticationInterceptor } from './interceptors/AuthenticationIntercep
 import { ResourceNotFoundInterceptor } from './interceptors/ResourceNotFoundInterceptor';
 import { NavigationBarComponent } from './ui/navigation-bar/navigation-bar.component';
 import { MainComponent } from './main/main.component';
-
-library.add(faHeart, faMugHot,
-  faTh, faThList,
-  faSignInAlt, faUserPlus,
-  faPlaneDeparture, faMapMarked,
-  faSearch, faWindowClose, faPen,
-  faHiking, faCalendarAlt, faArchway, faComments,
-  faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave,
-  faUpload
-);
 
 @NgModule({
   declarations: [
@@ -70,7 +54,8 @@ library.add(faHeart, faMugHot,
     FlexLayoutModule,
     MatToolbarModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule
   ],
   providers: [
     CookieService,
