@@ -35,6 +35,7 @@ import { LogoutComponent } from './authentication/logout/logout.component';
 import { AuthenticationInterceptor } from './interceptors/AuthenticationInterceptor';
 import { ResourceNotFoundInterceptor } from './interceptors/ResourceNotFoundInterceptor';
 import { NavigationBarComponent } from './ui/navigation-bar/navigation-bar.component';
+import { MainComponent } from './main/main.component';
 
 library.add(faHeart, faMugHot,
   faTh, faThList,
@@ -52,7 +53,8 @@ library.add(faHeart, faMugHot,
     RegistrationComponent,
     LoginComponent,
     LogoutComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

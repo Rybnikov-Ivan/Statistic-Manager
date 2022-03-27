@@ -1,1 +1,41 @@
-<p>login works!</p>
+<div class="container" fxLayout="row wrap">
+    <form [formGroup]="loginForm" (submit)="login()"
+          class="form"
+          fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center">
+    
+      <mat-card class="card">
+        <mat-card-header class="card-header" fxLayout.gt-xs="row" fxLayout.xs="column">
+          <mat-card-title class="card-title">
+            <div mat-card-avatar><fa-icon class="card-title-icon" [icon]="loginIcon"></fa-icon></div>
+            <span>Авторизация</span>
+          </mat-card-title>
+        </mat-card-header>
+    
+        <mat-card-content>
+          <div class="alert-msg" [hidden]="!loginError">
+            There was a problem logging in. Please try again.
+          </div>
+          <div class="alert-msg" [hidden]="!internalServerError">
+            Internal server error. Please try again later.
+          </div>
+          <mat-form-field class="item">
+            <input matInput placeholder="Username" formControlName="username" required>
+            <mat-error *ngIf="loginForm.controls.username.hasError('required')">
+              Введите логин
+            </mat-error>
+          </mat-form-field>
+    
+          <mat-form-field class="item">
+            <input type="password" matInput placeholder="Password" formControlName="password" required>
+            <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+              Введите пароль
+            </mat-error>
+          </mat-form-field>
+    
+          <div class="submit-button">
+            <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+</div>

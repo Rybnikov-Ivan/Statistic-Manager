@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { ServiceResponse } from 'src/app/model/service-response';
+import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/services/user.service';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +13,43 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  user?: User;
+  loginForm: any;
 
-  constructor() { }
+  serviceResponse: ServiceResponse<User> | undefined;
+
+  loginError: boolean = false;
+  internalServerError: boolean = false;
+  loginIcon = faSignInAlt;
+
+  constructor(private userService:UserService,
+              private formBuilder:FormBuilder,
+              private router:Router,
+              private cookieService:CookieService) {
+
+                this.loginForm = this.formBuilder.group({
+                  'username': ['', [Validators.required]],
+                  'password': ['', [Validators.required]]
+              });
+               }
 
   ngOnInit(): void {
   }
 
+  login():void {
+    this.userService.login(this.loginForm?.value).subscribe(
+      res => {
+        this.serviceResponse = res;
+        if (this.serviceResponse?.responseCode != "OK") {
+          this.loginError = true;
+        } else {
+          this.userService.setLoggedUser(this.serviceResponse.responseObject);
+          this.router.navigateByUrl('/');
+        }
+      },
+      error => {
+        this.internalServerError = true;
+      }
+    );
+  }
 }

@@ -36,15 +36,18 @@ export class UserService {
           return throwError(error);
         })
       );
-    }
-  public setLoggedUser(loggedUser: User):void {
+  }
+
+  public setLoggedUser(loggedUser?: User):void {
     this.storage.set(STORAGE_KEY, loggedUser);
     this.loggedInUserSubject.next(this.getUserFromStorage());
   }
+
   private getUserFromStorage(): User {
     const currentUser: User = this.storage.get(STORAGE_KEY) || null;
     return currentUser;
   }
+
   logout():Observable<any> {
     return this.http.get(this.endpoint + "/logout")
     .pipe(
@@ -54,7 +57,18 @@ export class UserService {
       }),
         catchError(error => {
           return of(error);
-      }));
-}
+    }));
+  }
+
+  login(user:User):Observable<any> {
+  return this.http.post(this.endpoint + "/login", user)
+    .pipe(
+      map(res => {
+        return res;
+      }),
+      catchError(error => {
+        return throwError(error);
+    }));
+  }
 
 }
