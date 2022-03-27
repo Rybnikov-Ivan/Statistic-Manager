@@ -3,7 +3,8 @@
       <mat-card class="card">
         <mat-card-header class="card-header">
           <mat-card-title class="card-title">
-            <span>{{'REGISTRATION.TITLE'}}</span>
+            <div mat-card-avatar><fa-icon class="card-title-icon" [icon]="userIcon"></fa-icon></div>
+            <span>Регистрация</span>
           </mat-card-title>
         </mat-card-header>
     
@@ -16,18 +17,18 @@
           </div>
           <mat-form-field class="item">
             <input matInput formControlName="email" placeholder="Email">
-            <mat-error *ngIf="registrationForm.controls.email.hasError('required')">
-              Please enter your email
+            <mat-error class="error" *ngIf="registrationForm.controls.email.hasError('required')">
+              Введите email
             </mat-error>
             <mat-error *ngIf="registrationForm.controls.email.hasError('invalidEmailAddress')">
-              Invalid email address
+              Неверный email адресс
             </mat-error>
           </mat-form-field>
           <mat-form-field class="item" hintLabel="Min 4 characters">
             <input matInput #input minlength="4" formControlName="username" placeholder="Username">
             <mat-hint>{{input.value?.length || 0}}/4</mat-hint>
             <mat-error *ngIf="registrationForm.controls.username.hasError('required')">
-              Please enter your name
+              Введите свой логин
             </mat-error>
             <mat-error *ngIf="registrationForm.controls.username.hasError('minlength')">
               Name must be at least 4 characters long.
@@ -37,19 +38,19 @@
             <mat-form-field class="item">
               <input type="password" matInput placeholder="Password"  formControlName="password">
               <mat-error *ngIf="registrationForm.controls.password.hasError('required')">
-                Please enter your password
+                Введите пароль
               </mat-error>
               <mat-error *ngIf="registrationForm.controls.password.hasError('invalidPassword')">
-                Invalid password, it must be at least 6 characters long and contain a number
+                Пароль должен быть не менее 6 символов и содержать минимум одну цифру
               </mat-error>
             </mat-form-field>
             <mat-form-field class="item">
               <input type="password" matInput formControlName="confirmPassword" placeholder="Confirm password">
               <mat-error *ngIf="registrationForm.controls.confirmPassword.hasError('required')">
-                Please confirm your password
+                Введите пароль снова
               </mat-error>
               <mat-error *ngIf="registrationForm.controls.confirmPassword.hasError('passwordMismatch')">
-                Passwords do not match
+                Пароли не совпадают
               </mat-error>
             </mat-form-field>
     

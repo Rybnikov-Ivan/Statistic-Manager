@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ServiceResponse } from 'src/app/model/service-response';
 import { UserService } from 'src/app/services/user.service';
 import { ValidationService } from 'src/app/services/validation.service';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-registration',
@@ -18,6 +19,7 @@ export class RegistrationComponent implements OnInit {
   registrationErrorMessage: string = '';
   internalServerError: boolean = false;
 
+  userIcon = faUserPlus;
   constructor(private userService: UserService,
       private formBuilder: FormBuilder,
       private router: Router) {
