@@ -31,6 +31,8 @@ import { AuthenticationInterceptor } from './interceptors/AuthenticationIntercep
 import { ResourceNotFoundInterceptor } from './interceptors/ResourceNotFoundInterceptor';
 import { NavigationBarComponent } from './ui/navigation-bar/navigation-bar.component';
 import { MainComponent } from './main/main.component';
+import { BoardUserComponent } from './board-user/board-user.component';
+import { PanelApplicationsComponent } from './board-user/panel-applications/panel-applications.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { MainComponent } from './main/main.component';
     LoginComponent,
     LogoutComponent,
     NavigationBarComponent,
-    MainComponent
+    MainComponent,
+    BoardUserComponent,
+    PanelApplicationsComponent
   ],
   imports: [
     BrowserModule,

@@ -3,9 +3,15 @@
       <!-- Logo & navigation -->
       <div fxFlex fxLayout>
         <ul fxLayout class="navigation-items" fxHide.lt-md>
-          <li><a routerLink="/main" routerLinkActive="active-link">На главную</a></li>
-          <li><a *ngIf="currentUser" routerLink="" routerLinkActive="active-link">Список приложений</a></li>
-          <li><a *ngIf="currentUser" routerLink="" routerLinkActive="active-link">Добавить приложение</a></li>
+          <li>
+            <a *ngIf="!currentUser" routerLink="api/main" routerLinkActive="active-link">На главную</a>
+          </li>
+          <li>
+            <a  *ngIf="currentUser" (click)="currentLink()" [routerLink]="['api/', username, 'main']" routerLinkActive="active-link">На главную</a>
+          </li>
+          <li>
+            <a *ngIf="currentUser" (click)="currentLink()" [routerLink]="['api/', username, 'applications']" routerLinkActive="active-link">Список приложений</a>
+          </li>
         </ul>
       </div>
 
@@ -13,16 +19,13 @@
       <div fxFlex fxLayout fxLayoutAlign="end">
         <ul fxLayout class="navigation-items" fxHide.lt-md>
           <li>
-            <a *ngIf="!currentUser" routerLink="/login" routerLinkActive="active-link">Авторизация</a>
+            <a *ngIf="!currentUser" routerLink="api/login" routerLinkActive="active-link">Авторизация</a>
           </li>
           <li>
-            <a *ngIf="!currentUser" routerLink="/register" routerLinkActive="active-link">Регистрация</a>
+            <a *ngIf="!currentUser" routerLink="api/register" routerLinkActive="active-link">Регистрация</a>
           </li>
           <li>
-            <div id="user-name" *ngIf="currentUser">Добро пожаловать {{currentUser.username}}</div>
-          </li>
-          <li>
-            <a *ngIf="currentUser" routerLink="/logout" routerLinkActive="active-link">Выйти</a>
+            <a *ngIf="currentUser" routerLink="api/logout" routerLinkActive="active-link">Выйти</a>
           </li>
         </ul>
       </div>

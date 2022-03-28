@@ -14,14 +14,18 @@ import { UserService } from '../services/user.service';
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
 
+  baseUrl = "http://localhost:8080/api/login";
 
-    constructor(private userService:UserService, private router:Router) {
+    constructor(private userService: UserService, private router: Router) {
     }
 
-    intercept(request: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+      if (request.url === this.baseUrl) {
+        return next.handle(request);
+      }
       const clonedRequest =
         request.clone(
-          {withCredentials: true}
+          { withCredentials: true }
         );
       return next.handle(clonedRequest)
       .pipe(
@@ -34,7 +38,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
           catchError(error => {
             console.log("Error response status: ", error.status);
             if (error.status === 401) {
-              this.router.navigateByUrl("/login");
+              this.router.navigateByUrl("api/login");
             }
             return throwError(error);
             }));

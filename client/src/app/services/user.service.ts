@@ -22,7 +22,7 @@ export class UserService {
   public loggedInUser$: Observable<User>;
 
   url = environment.API;
-  endpoint = this.url + "/user";
+  endpoint = this.url + "/api";
 
   constructor(private http: HttpClient,
     @Inject(USER_SERVICE_STORAGE) private storage: StorageService){
@@ -39,32 +39,17 @@ export class UserService {
     this.loggedInUserSubject.next(this.getUserFromStorage());
   }
 
-  private getUserFromStorage(): User {
+  public getUserFromStorage(): User {
     const currentUser: User = this.storage.get(STORAGE_KEY) || null;
     return currentUser;
   }
 
   logout():Observable<any> {
-    return this.http.get(this.endpoint + "/logout")
-    .pipe(
-      map(res => {
-        this.setLoggedUser(null!);
-        return res;
-      }),
-        catchError(error => {
-          return of(error);
-    }));
+    this.setLoggedUser(null!);
+    return this.http.get(this.endpoint + "/logout");
   }
 
   login(user:User):Observable<any> {
-  return this.http.post(this.endpoint + "/login", user)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-      catchError(error => {
-        return throwError(error);
-    }));
+    return this.http.post(this.endpoint + "/login", user, httpOptions);
   }
-
 }

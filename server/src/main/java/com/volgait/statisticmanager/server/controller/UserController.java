@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api")
 public class UserController {
     private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 

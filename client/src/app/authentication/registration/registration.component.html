@@ -60,7 +60,7 @@
             <button type="submit" mat-raised-button *ngIf="!isSuccesfull" color="primary" [disabled]="!registrationForm.valid">Create</button>
           </div>
           <div class="login-button">
-            <button routerLink="/login" mat-raised-button color="accent" *ngIf="isSuccesfull" [disabled]="!registrationForm.valid">Login</button>
+            <button routerLink="/api/login" mat-raised-button color="accent" *ngIf="isSuccesfull" [disabled]="!registrationForm.valid">Login</button>
           </div>
         </mat-card-content>
       </mat-card>

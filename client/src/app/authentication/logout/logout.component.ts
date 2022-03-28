@@ -21,7 +21,7 @@ export class LogoutComponent implements OnInit {
         res => {
           this.serviceResponse = res;
           if (this.serviceResponse.responseCode == "OK") {
-            this.router.navigateByUrl('/');
+            this.router.navigate(['']);
           }
         }
     );

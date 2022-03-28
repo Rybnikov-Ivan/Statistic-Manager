@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ServiceResponse } from 'src/app/model/service-response';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
@@ -11,16 +12,30 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./navigation-bar.component.css']
 })
 export class NavigationBarComponent implements OnInit {
-  currentUser: User | undefined;
+  public currentUser: User | undefined;
+  username: any;
   serviceResponse: ServiceResponse<User> | undefined;
-  ngOnInit() {}
-  constructor(private userService: UserService,
-              private router: Router,
-              private titleService: Title) 
-              { this.userService.loggedInUser$.subscribe(x => this.currentUser = x); }
+  private sub: any;
 
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
+              private titleService: Title) 
+              { this.userService.loggedInUser$.subscribe(x => this.currentUser = x);
+                 
+  }
+
+  ngOnInit() {
+    this.currentLink();
+  }
+  
   public setTitle(newTitle: string) {
       this.titleService.setTitle( newTitle );
+  }
+
+  currentLink(): void {
+    this.sub = this.route.params.subscribe(params => {
+      this.username = this.currentUser?.username;
+    });
   }
 
   logout(): void {
@@ -31,7 +46,7 @@ export class NavigationBarComponent implements OnInit {
               if (this.serviceResponse!.responseCode == "OK") {
                   this.userService.setLoggedUser(null!);
               }
-          }
+        }
       );
   }
 }

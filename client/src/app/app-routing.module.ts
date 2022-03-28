@@ -4,13 +4,20 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { LogoutComponent } from './authentication/logout/logout.component';
 import { RegistrationComponent } from './authentication/registration/registration.component';
+import { BoardUserComponent } from './board-user/board-user.component';
+import { PanelApplicationsComponent } from './board-user/panel-applications/panel-applications.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'main', pathMatch: 'full' },
-  { path: 'main', component: MainComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
-  { path: 'register', component: RegistrationComponent }
+  { path: '', redirectTo: 'api/main', pathMatch: 'full' },
+  { path: 'api/main', component: MainComponent },
+  { path: 'api/login', component: LoginComponent },
+  { path: 'api/logout', component: LogoutComponent },
+  { path: 'api/register', component: RegistrationComponent },
+  { path: 'api/:username', component: BoardUserComponent, children: [
+    { path: '', redirectTo: 'main', pathMatch: 'full' }, 
+    { path: 'main', component: MainComponent}, 
+    { path: 'applications', component: PanelApplicationsComponent }
+]}
 ];
 
 @NgModule({
