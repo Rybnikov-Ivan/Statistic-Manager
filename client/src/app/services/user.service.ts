@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { StorageService } from 'ngx-webstorage-service';
 import { BehaviorSubject, catchError, map, Observable, of, throwError } from 'rxjs';
@@ -9,6 +9,10 @@ import { User } from '../model/user';
 const STORAGE_KEY = 'current-user';
 export const USER_SERVICE_STORAGE =
     new InjectionToken<StorageService>('USER_SERVICE_STORAGE');
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -26,16 +30,8 @@ export class UserService {
       this.loggedInUser$ = this.loggedInUserSubject.asObservable();
     }
     
-  register(registrationForm: RegistrationForm):Observable<any> {
-    return this.http.post(this.endpoint + "/register", registrationForm)
-      .pipe(
-        map(res => {
-          return res;
-        }),
-        catchError(error => {
-          return throwError(error);
-        })
-      );
+  register(registrationForm: RegistrationForm): Observable<any> {
+    return this.http.post(this.endpoint + "/register", registrationForm, httpOptions);
   }
 
   public setLoggedUser(loggedUser?: User):void {

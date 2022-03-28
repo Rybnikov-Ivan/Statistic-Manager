@@ -16,6 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -51,6 +52,7 @@ import { MainComponent } from './main/main.component';
     MatMenuModule,
     MatInputModule,
     LayoutModule,
+    MatSnackBarModule,
     FlexLayoutModule,
     MatToolbarModule,
     HttpClientModule,

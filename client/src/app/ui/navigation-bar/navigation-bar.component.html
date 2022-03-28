@@ -3,7 +3,9 @@
       <!-- Logo & navigation -->
       <div fxFlex fxLayout>
         <ul fxLayout class="navigation-items" fxHide.lt-md>
-          <li><a *ngIf="!currentUser" routerLink="/main" routerLinkActive="active-link">На главную</a></li>
+          <li><a routerLink="/main" routerLinkActive="active-link">На главную</a></li>
+          <li><a *ngIf="currentUser" routerLink="" routerLinkActive="active-link">Список приложений</a></li>
+          <li><a *ngIf="currentUser" routerLink="" routerLinkActive="active-link">Добавить приложение</a></li>
         </ul>
       </div>
 
@@ -14,13 +16,13 @@
             <a *ngIf="!currentUser" routerLink="/login" routerLinkActive="active-link">Авторизация</a>
           </li>
           <li>
-            <a *ngIf="!currentUser" routerLink="/registration" routerLinkActive="active-link">Регистрация</a>
+            <a *ngIf="!currentUser" routerLink="/register" routerLinkActive="active-link">Регистрация</a>
           </li>
           <li>
-            <div id="user-name" *ngIf="currentUser">Welcome <i>{{currentUser.username}}</i></div>
+            <div id="user-name" *ngIf="currentUser">Добро пожаловать {{currentUser.username}}</div>
           </li>
           <li>
-            <a *ngIf="currentUser" routerLink="/logout" routerLinkActive="active-link">Logout</a>
+            <a *ngIf="currentUser" routerLink="/logout" routerLinkActive="active-link">Выйти</a>
           </li>
         </ul>
       </div>

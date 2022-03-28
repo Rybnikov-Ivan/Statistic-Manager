@@ -5,6 +5,7 @@ import { ServiceResponse } from 'src/app/model/service-response';
 import { UserService } from 'src/app/services/user.service';
 import { ValidationService } from 'src/app/services/validation.service';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-registration',
@@ -13,16 +14,18 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class RegistrationComponent implements OnInit {
   registrationForm: any;
-  serviceResponse!: ServiceResponse<any>;
+  serviceResponse?: ServiceResponse<any>;
   
   registrationError: boolean = false;
   registrationErrorMessage: string = '';
   internalServerError: boolean = false;
+  isSuccesfull: boolean = false;
 
   userIcon = faUserPlus;
   constructor(private userService: UserService,
       private formBuilder: FormBuilder,
-      private router: Router) {
+      private router: Router,
+      private _snackBar: MatSnackBar) {
         this.registrationForm = this.formBuilder.group({
           'username': ['', [Validators.required, Validators.minLength(4)]],
           'email': ['', [Validators.required, ValidationService.emailValidator]],
@@ -35,8 +38,26 @@ export class RegistrationComponent implements OnInit {
       }
   ngOnInit() {}
 
-  register():void {
-    this.userService.register(this.registrationForm.value)
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+
+  register(): void {
+    this.userService.register(this.registrationForm.value).subscribe(
+      res => {
+        this.serviceResponse = res;
+        console.log(res);
+        if(res.responseCode != "OK") {
+          this.registrationError = true;
+          this.registrationErrorMessage = this.serviceResponse?.responseMessage!;
+        } else {
+          this.isSuccesfull = true;
+          this.openSnackBar('регистрация прошла успешно', 'закрыть');
+        }
+      }, err => {
+        this.internalServerError = true;
+      }
+    )
   }
 
 }

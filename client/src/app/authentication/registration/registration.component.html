@@ -15,6 +15,9 @@
           <div class="alert-msg" [hidden]="!internalServerError">
             Internal server error. Please try again later.
           </div>
+          <div class="alert-succes" *ngIf="isSuccesfull">
+
+          </div>
           <mat-form-field class="item">
             <input matInput formControlName="email" placeholder="Email">
             <mat-error class="error" *ngIf="registrationForm.controls.email.hasError('required')">
@@ -54,7 +57,10 @@
             </mat-form-field>
     
           <div class="submit-button">
-            <button type="submit" mat-raised-button color="primary" [disabled]="!registrationForm.valid">Create</button>
+            <button type="submit" mat-raised-button *ngIf="!isSuccesfull" color="primary" [disabled]="!registrationForm.valid">Create</button>
+          </div>
+          <div class="login-button">
+            <button routerLink="/login" mat-raised-button color="accent" *ngIf="isSuccesfull" [disabled]="!registrationForm.valid">Login</button>
           </div>
         </mat-card-content>
       </mat-card>
