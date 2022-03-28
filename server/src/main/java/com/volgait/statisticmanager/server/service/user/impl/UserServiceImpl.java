@@ -108,16 +108,4 @@ public class UserServiceImpl implements UserService {
         }
         return response;
     }
-
-    @Override
-    public boolean activateAccount(String token) {
-        VerificationToken verificationToken = verificationTokenRepository.findByToken(token);
-        if (verificationToken == null) {
-            return false;
-        }
-        User account = verificationToken.getUser();
-        userRepository.save(account);
-        verificationTokenRepository.save(verificationToken);
-        return true;
-    }
 }
