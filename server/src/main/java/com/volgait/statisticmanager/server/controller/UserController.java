@@ -30,9 +30,9 @@ public class UserController {
         return userService.login(requestUser);
     }
 
-    @GetMapping(value = "/logout")
+    @GetMapping(value = "/{username}/logout")
     @ResponseBody
-    public ServiceResponse processLogout() {
+    public ServiceResponse processLogout(@PathVariable String username) {
         return userService.logout();
     }
 

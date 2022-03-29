@@ -1,5 +1,27 @@
-<div class="container">
-    <form class="form">
-      HeLLO
-    </form>
+<div>
+  <header>
+    <mat-toolbar>
+      <!-- Logo & navigation -->
+      <div fxFlex fxLayout>
+        <ul fxLayout class="navigation-items" fxHide.lt-md>
+          <li>
+            <a [routerLink]="['main']" routerLinkActive="active-link">На главную</a>
+          </li>
+          <li>
+            <a  [routerLink]="['applications']" routerLinkActive="active-link">Список приложений</a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- User menu -->
+      <div fxFlex fxLayout fxLayoutAlign="end">
+        <ul fxLayout class="navigation-items" fxHide.lt-md>
+          <li>
+            <a routerLink="logout" routerLinkActive="active-link">Выйти</a>
+          </li>
+        </ul>
+      </div>
+    </mat-toolbar> 
+  </header>
 </div>
+<router-outlet></router-outlet>

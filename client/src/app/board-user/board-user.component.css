@@ -1,12 +1,32 @@
-.container {
-    background: #b2b3e9;
-    display: flex;
+.header {
     background-size: cover;
-    height: 100%;
-}
-.form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
+  }
+  mat-toolbar{
+    background: rgba(139, 3, 55, 0.7);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+  }
+  mat-toolbar a {
+    text-decoration: none;
+    color: white;
+    margin-right: 30px;
+  }
+  mat-toolbar a:hover {
+    color: rgb(180, 180, 180);
+  }
+  mat-toolbar ul li div {
+    margin-right: 30px;
+  }
+  .navigation-items{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  .logo {
+    font-size: 27px;
+  }
+  .active-link {
+    color: rgb(243, 197, 113) !important;
+    border-bottom: 2px #fff solid;
+  }

@@ -6,12 +6,6 @@
           <li>
             <a *ngIf="!currentUser" routerLink="api/main" routerLinkActive="active-link">На главную</a>
           </li>
-          <li>
-            <a  *ngIf="currentUser" (click)="currentLink()" [routerLink]="['api/', username, 'main']" routerLinkActive="active-link">На главную</a>
-          </li>
-          <li>
-            <a *ngIf="currentUser" (click)="currentLink()" [routerLink]="['api/', username, 'applications']" routerLinkActive="active-link">Список приложений</a>
-          </li>
         </ul>
       </div>
 
@@ -23,9 +17,6 @@
           </li>
           <li>
             <a *ngIf="!currentUser" routerLink="api/register" routerLinkActive="active-link">Регистрация</a>
-          </li>
-          <li>
-            <a *ngIf="currentUser" routerLink="api/logout" routerLinkActive="active-link">Выйти</a>
           </li>
         </ul>
       </div>

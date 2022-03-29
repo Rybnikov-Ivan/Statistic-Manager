@@ -10,12 +10,15 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./board-user.component.css']
 })
 export class BoardUserComponent implements OnInit {
+  private routeSubscription!: Subscription;
   currentUser: User | undefined;
 
   username: any;
 
   constructor(private route: ActivatedRoute,
     private userService: UserService) {
+      this.userService.loggedInUser$.subscribe(x => this.currentUser = x);
+      this.routeSubscription = route.params.subscribe(params => this.username=this.currentUser?.username);
    }
 
   ngOnInit(): void {

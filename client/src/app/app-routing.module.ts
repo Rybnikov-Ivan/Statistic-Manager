@@ -11,9 +11,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'api/main', pathMatch: 'full' },
   { path: 'api/main', component: MainComponent },
   { path: 'api/login', component: LoginComponent },
-  { path: 'api/logout', component: LogoutComponent },
   { path: 'api/register', component: RegistrationComponent },
-  { path: 'api/:username', component: BoardUserComponent, children: [
+  { path: 'api/:username', component: BoardUserComponent, 
+  children: [
+    { path: 'logout', component: LogoutComponent },
     { path: '', redirectTo: 'main', pathMatch: 'full' }, 
     { path: 'main', component: MainComponent}, 
     { path: 'applications', component: PanelApplicationsComponent }

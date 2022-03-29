@@ -15,28 +15,29 @@ export class NavigationBarComponent implements OnInit {
   public currentUser: User | undefined;
   username: any;
   serviceResponse: ServiceResponse<User> | undefined;
-  private sub: any;
+  private routeSubscription!: Subscription;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
               private titleService: Title) 
               { this.userService.loggedInUser$.subscribe(x => this.currentUser = x);
+                this.routeSubscription = route.params.subscribe(params => this.username=params['username']);
                  
   }
 
   ngOnInit() {
-    this.currentLink();
+    //this.currentLink();
   }
   
   public setTitle(newTitle: string) {
       this.titleService.setTitle( newTitle );
   }
 
-  currentLink(): void {
-    this.sub = this.route.params.subscribe(params => {
-      this.username = this.currentUser?.username;
-    });
-  }
+  // currentLink(): void {
+  //   this.sub = this.route.params.subscribe(params => {
+  //     this.username = this.currentUser?.username;
+  //   });
+  // }
 
   logout(): void {
       this.userService.logout().subscribe(
