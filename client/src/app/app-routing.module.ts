@@ -7,6 +7,7 @@ import { RegistrationComponent } from './authentication/registration/registratio
 import { BoardUserComponent } from './board-user/board-user.component';
 import { PanelApplicationsComponent } from './board-user/panel-applications/panel-applications.component';
 import { DesignerApplicationComponent } from './board-user/designer-application/designer-application.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'api/main', pathMatch: 'full' },
@@ -21,8 +22,8 @@ const routes: Routes = [
     { path: 'main', component: MainComponent}, 
     { path: 'applications', component: PanelApplicationsComponent },
     { path: 'designer', component: DesignerApplicationComponent },
-    { path: '**', component: MainComponent}
-]}
+  ]},
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

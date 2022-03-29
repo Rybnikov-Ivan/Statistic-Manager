@@ -34,6 +34,7 @@ import { MainComponent } from './main/main.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { PanelApplicationsComponent } from './board-user/panel-applications/panel-applications.component';
 import { DesignerApplicationComponent } from './board-user/designer-application/designer-application.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { DesignerApplicationComponent } from './board-user/designer-application/
     MainComponent,
     BoardUserComponent,
     PanelApplicationsComponent,
-    DesignerApplicationComponent
+    DesignerApplicationComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
