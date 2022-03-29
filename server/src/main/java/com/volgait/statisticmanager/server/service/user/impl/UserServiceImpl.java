@@ -5,6 +5,8 @@ import com.volgait.statisticmanager.server.model.entity.VerificationToken;
 import com.volgait.statisticmanager.server.model.form.RegistrationForm;
 import com.volgait.statisticmanager.server.repository.UserRepository;
 import com.volgait.statisticmanager.server.repository.VerificationTokenRepository;
+import com.volgait.statisticmanager.server.service.response.MessageServiceResponse;
+import com.volgait.statisticmanager.server.service.response.ServiceResponse;
 import com.volgait.statisticmanager.server.service.security.SecurityService;
 import com.volgait.statisticmanager.server.service.user.UserService;
 import org.slf4j.Logger;

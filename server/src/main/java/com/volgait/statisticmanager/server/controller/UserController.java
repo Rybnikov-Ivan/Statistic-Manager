@@ -3,7 +3,7 @@ package com.volgait.statisticmanager.server.controller;
 import com.volgait.statisticmanager.server.model.entity.User;
 import com.volgait.statisticmanager.server.model.form.RegistrationForm;
 import com.volgait.statisticmanager.server.service.user.UserService;
-import com.volgait.statisticmanager.server.service.user.impl.ServiceResponse;
+import com.volgait.statisticmanager.server.service.response.ServiceResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

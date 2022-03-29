@@ -1,4 +1,4 @@
-package com.volgait.statisticmanager.server.service.user.impl;
+package com.volgait.statisticmanager.server.service.response;
 
 import lombok.Getter;
 import lombok.Setter;
