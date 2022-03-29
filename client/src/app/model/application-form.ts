@@ -1,6 +1,5 @@
 export class ApplicationForm {
     constructor(
-        public name: string,
-        public creationDate: string
+        public name: string
     ) {  }
 }

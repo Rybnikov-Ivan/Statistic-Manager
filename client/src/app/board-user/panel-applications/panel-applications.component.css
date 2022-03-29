@@ -1,0 +1,12 @@
+.container {
+    background: #b2b3e9;
+    display: flex;
+    background-size: cover;
+    height: 100%;
+}
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

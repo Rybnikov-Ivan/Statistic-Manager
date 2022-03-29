@@ -1,0 +1,28 @@
+<div class="container">
+    <form class="form" [formGroup]="appForm">
+        <mat-card class="card">
+            <mat-card-header class="card-header">
+                <mat-card-title class="card-title">
+                    <div mat-card-avatar><fa-icon class="card-title-icon" [icon]="addIcon"></fa-icon></div>
+                    <span>Создать приложение</span>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field class="item">
+                    <input matInput formControlName="name" placeholder="Название">
+                    <mat-error *ngIf="appForm.controls.name.hasError('required')">
+                        Введите название приложения
+                    </mat-error>
+                    <mat-error *ngIf="appForm.controls.name.hasError('invalidName')">
+                        Имя должно быть не менее 4 символов и содержать минимум одну букву
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="submit-button">
+                    <button type="submit" mat-raised-button color="primary" [disabled]="!appForm.valid">Create</button>
+                </div>
+
+            </mat-card-content>       
+        </mat-card>           
+    </form>
+</div>

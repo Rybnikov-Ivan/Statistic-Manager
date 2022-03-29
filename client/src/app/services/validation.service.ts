@@ -13,6 +13,7 @@ export class ValidationService {
       'invalidEmailAddress': 'Invalid email address',
       'invalidPassword': 'Invalid password, it must be at least 6 characters long and contain a number',
       'passwordMismatch': 'Passwords do not match',
+      'invalidName' : 'Invalid name, it must be at least 4 characters long and contain a number',
       'minlength': `Minimum length ${validatorValue.requiredLength}`
     };
     return config[validatorName as keyof typeof config]
@@ -37,6 +38,13 @@ export class ValidationService {
     let confirmPassword = control.get('confirmPassword')?.value;
     if(password != confirmPassword) {
       control.get('confirmPassword')?.setErrors({ passwordMismatch: true });
+    }
+  }
+  static nameValidator(control: { value: string; }) {
+    if (control.value.match(/^(?=.*[A-Za-z])[A-Za-z\d]{4,}$/)) {
+      return null;
+    } else {
+      return { invalidName : true };
     }
   }
 }

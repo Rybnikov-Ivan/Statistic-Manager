@@ -1,0 +1,36 @@
+.container {
+    background: #b2b3e9;
+    display: flex;
+    background-size: cover;
+    height: 100%;
+}
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.card {
+    width: 25%;
+}
+.card-header {
+    height: 30px;
+}
+.card-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 4%;
+}
+.card-title-icon {
+    color: #4147ff;
+}
+.item {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
+}
+.submit-button {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 5%;
+}

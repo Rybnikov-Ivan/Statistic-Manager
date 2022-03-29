@@ -52,12 +52,11 @@ export class RegistrationComponent implements OnInit {
           this.registrationErrorMessage = this.serviceResponse?.responseMessage!;
         } else {
           this.isSuccesfull = true;
-          this.openSnackBar('регистрация прошла успешно', 'закрыть');
+          this.openSnackBar('Регистрация прошла успешно', 'закрыть');
         }
       }, err => {
         this.internalServerError = true;
       }
     )
   }
-
 }
